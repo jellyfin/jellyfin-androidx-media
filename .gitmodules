@@ -1,0 +1,8 @@
+[submodule "ExoPlayer"]
+	path = ExoPlayer
+	url = https://github.com/google/ExoPlayer.git
+	branch = release-v2
+[submodule "ffmpeg"]
+	path = ffmpeg
+	url = https://git.ffmpeg.org/ffmpeg.git
+	branch = release/4.2
