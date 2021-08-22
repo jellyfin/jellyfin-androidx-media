@@ -1,0 +1,33 @@
+name: ExoPlayer FFmpeg Extension Publish
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    if: ${{ github.repository == 'Maxr1998/jellyfin-exoplayer-ffmpeg-extension' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: adopt
+          java-version: 11
+      - name: Setup environment variables
+        run: |
+          echo "EXOPLAYER_ROOT=${GITHUB_WORKSPACE}/ExoPlayer" >> $GITHUB_ENV
+          echo "FFMPEG_EXT_PATH=${GITHUB_WORKSPACE}/ExoPlayer/extensions/ffmpeg/src/main" >> $GITHUB_ENV
+          echo "FFMPEG_PATH=${GITHUB_WORKSPACE}/ffmpeg" >> $GITHUB_ENV
+          echo "ENABLED_DECODERS=(ac3 eac3 dca mlp truehd)"
+      - name: Create softlink to ffmpeg in ExoPlayer
+        run: |
+          cd "${FFMPEG_EXT_PATH}/jni"
+          ln -sf "${FFMPEG_PATH}" ffmpeg
+      - name: Build ffmpeg
+        run: |
+          cd "${FFMPEG_EXT_PATH}/jni"
+          ./build_ffmpeg.sh "${FFMPEG_EXT_PATH}" "${ANDROID_NDK_ROOT}" "linux-x86_64" "${ENABLED_DECODERS[@]}"
