@@ -31,3 +31,9 @@ jobs:
         run: |
           cd "${FFMPEG_EXT_PATH}/jni"
           ./build_ffmpeg.sh "${FFMPEG_EXT_PATH}" "${ANDROID_NDK_ROOT}" "linux-x86_64" "${ENABLED_DECODERS[@]}"
+      - name: Force specific version of cmake to build extension
+        run: |
+          cmake=(${ANDROID_SDK_ROOT}/cmake/3.10.2*)
+          echo cmake.dir="${cmake[0]}" | tee -a local.properties
+      - name: Build extension and publish library
+        run: ./gradlew :jellyfin-exoplayer-ffmpeg-extension:publishToMavenLocal
