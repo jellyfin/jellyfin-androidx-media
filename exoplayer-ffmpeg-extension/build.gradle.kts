@@ -15,8 +15,8 @@ afterEvaluate {
         from(exoplayerProject.components["release"])
 
         pom {
-            name.set("$groupId:$artifactId")
-            description.set("Jellyfin Android FFmpeg Extension")
+            name.set("Jellyfin ExoPlayer libraries - $artifactId")
+            description.set("ExoPlayer FFmpeg extension used in the Jellyfin project")
             url.set("https://github.com/jellyfin/jellyfin-exoplayer-ffmpeg-extension")
 
             scm {
