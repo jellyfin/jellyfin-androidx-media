@@ -2,13 +2,17 @@ plugins {
     `maven-publish`
 }
 
+val exoplayerProject = project(":exoplayer-extension-ffmpeg")
+
 group = "org.jellyfin.exoplayer"
-version = "1.0.0"
+if (exoplayerProject.ext.has("releaseVersion")) {
+    version = exoplayerProject.ext.get("releaseVersion")!!
+}
 
 afterEvaluate {
     publishing.publications.create<MavenPublication>("default") {
         // Repackage release artifacts of extension
-        from(project(":exoplayer-extension-ffmpeg").components["release"])
+        from(exoplayerProject.components["release"])
 
         pom {
             name.set("$groupId:$artifactId")
