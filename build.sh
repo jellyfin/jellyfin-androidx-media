@@ -15,7 +15,7 @@ echo "Found NDK at $ANDROID_NDK_ROOT"
 export EXOPLAYER_ROOT="${PWD}/ExoPlayer"
 export FFMPEG_EXT_PATH="${EXOPLAYER_ROOT}/extensions/ffmpeg/src/main"
 export FFMPEG_PATH="${PWD}/ffmpeg"
-export ENABLED_DECODERS=(ac3 eac3 dca mlp truehd)
+export ENABLED_DECODERS=(alac pcm_mulaw pcm_alaw aac ac3 eac3 dca mlp truehd)
 
 # Create softlink to ffmpeg
 ln -sf "${FFMPEG_PATH}" "${FFMPEG_EXT_PATH}/jni/ffmpeg"

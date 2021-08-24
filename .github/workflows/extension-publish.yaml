@@ -31,7 +31,7 @@ jobs:
           echo "EXOPLAYER_ROOT=${GITHUB_WORKSPACE}/ExoPlayer" >> $GITHUB_ENV
           echo "FFMPEG_EXT_PATH=${GITHUB_WORKSPACE}/ExoPlayer/extensions/ffmpeg/src/main" >> $GITHUB_ENV
           echo "FFMPEG_PATH=${GITHUB_WORKSPACE}/ffmpeg" >> $GITHUB_ENV
-          echo "ENABLED_DECODERS=(ac3 eac3 dca mlp truehd)"
+          echo "ENABLED_DECODERS=(alac pcm_mulaw pcm_alaw aac ac3 eac3 dca mlp truehd)"
       - name: Create softlink to ffmpeg in ExoPlayer
         run: |
           cd "${FFMPEG_EXT_PATH}/jni"
