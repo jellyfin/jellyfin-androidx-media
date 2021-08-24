@@ -1,5 +1,14 @@
 version: 2
 updates:
+  - package-ecosystem: gitsubmodule
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - ci
+      - submodules
+    commit-message:
+      prefix: ci
   - package-ecosystem: github-actions
     directory: /
     schedule:
