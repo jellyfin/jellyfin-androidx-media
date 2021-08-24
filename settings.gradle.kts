@@ -6,4 +6,4 @@ if (gradle is ExtensionAware) {
     apply(from = File(extension.extra["exoplayerRoot"].toString(), "core_settings.gradle"))
 }
 
-include(":jellyfin-exoplayer-ffmpeg-extension")
+include(":exoplayer-ffmpeg-extension")

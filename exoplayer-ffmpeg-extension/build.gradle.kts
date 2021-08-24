@@ -2,7 +2,7 @@ plugins {
     `maven-publish`
 }
 
-group = "org.jellyfin.android"
+group = "org.jellyfin.exoplayer"
 version = "1.0.0"
 
 afterEvaluate {

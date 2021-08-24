@@ -45,4 +45,4 @@ jobs:
           cmake=(${ANDROID_SDK_ROOT}/cmake/3.10.2*)
           echo cmake.dir="${cmake[0]}" | tee -a local.properties
       - name: Build extension and publish library
-        run: ./gradlew :jellyfin-exoplayer-ffmpeg-extension:publishToMavenLocal
+        run: ./gradlew :exoplayer-ffmpeg-extension:publishToMavenLocal
