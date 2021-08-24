@@ -27,8 +27,8 @@ afterEvaluate {
 
             licenses {
                 license {
-                    name.set("GNU Lesser General Public License v3.0")
-                    url.set("https://www.gnu.org/licenses/lgpl-3.0.txt")
+                    name.set("GNU General Public License v3.0")
+                    url.set("https://www.gnu.org/licenses/gpl-3.0.txt")
                 }
             }
 
