@@ -34,8 +34,8 @@ afterEvaluate {
 
             developers {
                 developer {
-                    id.set("Max Rumpf")
-                    name.set("Maxr1998")
+                    id.set("Maxr1998")
+                    name.set("Max Rumpf")
                     url.set("https://github.com/Maxr1998")
                     organization.set("Jellyfin")
                     organizationUrl.set("https://jellyfin.org")
