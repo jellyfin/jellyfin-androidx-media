@@ -1,18 +1,43 @@
+import com.android.build.gradle.BaseExtension
+
 plugins {
     `maven-publish`
+    signing
 }
 
-val exoplayerProject = project(":exoplayer-extension-ffmpeg")
-
 group = "org.jellyfin.exoplayer"
-if (exoplayerProject.ext.has("releaseVersion")) {
-    version = exoplayerProject.ext.get("releaseVersion")!!
+version = createVersion()
+
+val exoplayerProject = project(":exoplayer-extension-ffmpeg")
+val android = exoplayerProject.extensions.findByType(BaseExtension::class.java) ?: error("Could not find android extension")
+
+val generateJavadoc by exoplayerProject.tasks.getting(Javadoc::class)
+val javadocJar by tasks.creating(Jar::class) {
+    archiveClassifier.set("javadoc")
+    dependsOn(generateJavadoc)
+    from(generateJavadoc)
+}
+
+// Package sources from ExoPlayer FFmpeg extension project
+val sourcesJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    val main = android.sourceSets.getByName("main")
+    from(main.java.srcDirs)
+    @Suppress("deprecation")
+    from(main.jni.srcDirs) {
+        exclude("**/ffmpeg/")
+    }
 }
 
 afterEvaluate {
+    // Specify release artifacts and apply POM
     publishing.publications.create<MavenPublication>("default") {
         // Repackage release artifacts of extension
         from(exoplayerProject.components["release"])
+
+        // Add JavaDocs and sources
+        artifact(javadocJar)
+        artifact(sourcesJar)
 
         pom {
             name.set("Jellyfin ExoPlayer libraries - $artifactId")
@@ -49,6 +74,18 @@ afterEvaluate {
                     organizationUrl.set("https://jellyfin.org")
                 }
             }
+        }
+    }
+
+    // Add signing config
+    configure<SigningExtension> {
+        val signingKey = getProperty("signing.key")
+        val signingPassword = getProperty("signing.password") ?: ""
+
+        if (signingKey != null) {
+            useInMemoryPgpKeys(signingKey, signingPassword)
+            val publishing: PublishingExtension by project
+            sign(publishing.publications)
         }
     }
 }
