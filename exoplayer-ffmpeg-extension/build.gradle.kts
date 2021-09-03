@@ -5,9 +5,6 @@ plugins {
     signing
 }
 
-group = "org.jellyfin.exoplayer"
-version = createVersion()
-
 val exoplayerProject = project(":exoplayer-extension-ffmpeg")
 val android = exoplayerProject.extensions.findByType(BaseExtension::class.java) ?: error("Could not find android extension")
 
