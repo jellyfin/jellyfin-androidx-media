@@ -31,12 +31,16 @@ allprojects {
 }
 
 // Add Sonatype publishing repository
-nexusPublishing.repositories.sonatype {
-    nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
-    snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+nexusPublishing {
+    repositories.sonatype {
+        nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+        snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
 
-    username.set(getProperty("ossrh.username"))
-    password.set(getProperty("ossrh.password"))
+        username.set(getProperty("ossrh.username"))
+        password.set(getProperty("ossrh.password"))
+    }
+
+    useStaging.set(project.provider { project.version.toString() != SNAPSHOT_VERSION })
 }
 
 tasks.wrapper {
