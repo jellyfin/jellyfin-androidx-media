@@ -13,6 +13,9 @@ buildscript {
 }
 
 allprojects {
+    group = "org.jellyfin.exoplayer"
+    version = createVersion()
+
     repositories {
         mavenCentral()
         google()
