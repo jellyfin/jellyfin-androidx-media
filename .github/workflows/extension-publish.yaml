@@ -31,20 +31,8 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Setup environment variables
-        run: |
-          echo "EXOPLAYER_ROOT=${GITHUB_WORKSPACE}/ExoPlayer" >> $GITHUB_ENV
-          echo "FFMPEG_EXT_PATH=${GITHUB_WORKSPACE}/ExoPlayer/extensions/ffmpeg/src/main" >> $GITHUB_ENV
-          echo "FFMPEG_PATH=${GITHUB_WORKSPACE}/ffmpeg" >> $GITHUB_ENV
-          echo "ENABLED_DECODERS=(alac pcm_mulaw pcm_alaw aac ac3 eac3 dca mlp truehd)" >> $GITHUB_ENV
-      - name: Create softlink to ffmpeg in ExoPlayer
-        run: |
-          cd "${FFMPEG_EXT_PATH}/jni"
-          ln -sf "${FFMPEG_PATH}" ffmpeg
       - name: Build ffmpeg
-        run: |
-          cd "${FFMPEG_EXT_PATH}/jni"
-          ./build_ffmpeg.sh "${FFMPEG_EXT_PATH}" "${ANDROID_NDK_ROOT}" "linux-x86_64" "${ENABLED_DECODERS[@]}"
+        run: ./build.sh
       - name: Force specific version of cmake to build extension
         run: |
           cmake=(${ANDROID_SDK_ROOT}/cmake/3.10.2*)
