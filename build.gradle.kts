@@ -19,14 +19,6 @@ allprojects {
     repositories {
         mavenCentral()
         google()
-
-        // Necessary for some ExoPlayer dependencies
-        @Suppress("DEPRECATION", "JcenterRepositoryObsolete")
-        jcenter {
-            content {
-                includeVersion("com.google.vr", "sdk-base", "1.190.0")
-            }
-        }
     }
 }
 
