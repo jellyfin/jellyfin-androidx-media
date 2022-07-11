@@ -11,11 +11,11 @@ jobs:
     if: github.repository == 'jellyfin/jellyfin-exoplayer-ffmpeg-extension'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3
         with:
           submodules: recursive
       - name: Update Gradle Wrapper
-        uses: gradle-update/update-gradle-wrapper-action@v1
+        uses: gradle-update/update-gradle-wrapper-action@981c551b17dbcf1940b1b4435afdb79babb7c13a # tag=v1
         with:
           repo-token: ${{ secrets.JF_BOT_TOKEN }}
           paths-ignore: ExoPlayer/**
