@@ -6,5 +6,16 @@
   ],
   "git-submodules": {
     "enabled": true
-  }
+  },
+  "packageRules": [
+    {
+      "matchManagers": [
+        "git-submodules"
+      ],
+      "addLabels": [
+        "ci",
+        "submodules"
+      ]
+    }
+  ]
 }
