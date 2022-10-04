@@ -7,6 +7,9 @@ on:
     branches:
       - master
 
+env:
+  NDK_VER: 21.4.7075529
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -23,6 +26,13 @@ jobs:
           distribution: temurin
           java-version: 11
           cache: gradle
+      - name: Cache NDK
+        uses: actions/cache@v3
+        with:
+          path: /usr/local/lib/android/sdk/ndk/${{ env.NDK_VER }}
+          key: ${{ runner.os }}-${{ env.NDK_VER }}
+      - name: Install correct NDK
+        run: sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${NDK_VER}"
       - name: Build ffmpeg
         run: ./build.sh
       - name: Force specific version of cmake to build extension
