@@ -1,4 +1,4 @@
-import com.android.build.gradle.BaseExtension
+import com.android.build.gradle.LibraryExtension
 
 plugins {
     `maven-publish`
@@ -6,7 +6,8 @@ plugins {
 }
 
 val exoplayerProject = project(":exoplayer-extension-ffmpeg")
-val android = exoplayerProject.extensions.findByType(BaseExtension::class.java) ?: error("Could not find android extension")
+val android = exoplayerProject.extensions.findByType(LibraryExtension::class.java)
+    ?: error("Could not find android extension")
 
 val generateJavadoc by exoplayerProject.tasks.getting(Javadoc::class)
 val javadocJar by tasks.creating(Jar::class) {

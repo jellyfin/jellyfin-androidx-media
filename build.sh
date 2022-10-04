@@ -1,15 +1,9 @@
 #!/bin/bash
 
-# Search NDK path
-CANDIDATES=("$ANDROID_NDK_ROOT" "$ANDROID_NDK_HOME" "$NDK_ROOT" "$NDK")
+# Ensure NDK is available
+export ANDROID_NDK_PATH=$ANDROID_HOME/ndk/21.4.7075529
 
-for candidate in ${CANDIDATES[@]}; do
-    [[ -n "$candidate" && -d "$candidate" ]] && export ANDROID_NDK_ROOT="$candidate" && break
-done
-
-[[ -z "$ANDROID_NDK_ROOT" ]] && echo "No NDK found, quitting…" && exit 1
-
-echo "Found NDK at $ANDROID_NDK_ROOT"
+[[ -z "$ANDROID_NDK_PATH" ]] && echo "No NDK found, quitting…" && exit 1
 
 # Setup environment
 export EXOPLAYER_ROOT="${PWD}/ExoPlayer"
@@ -22,4 +16,4 @@ ln -sf "${FFMPEG_PATH}" "${FFMPEG_EXT_PATH}/jni/ffmpeg"
 
 # Start build
 cd "${FFMPEG_EXT_PATH}/jni"
-./build_ffmpeg.sh "${FFMPEG_EXT_PATH}" "${ANDROID_NDK_ROOT}" "linux-x86_64" "${ENABLED_DECODERS[@]}"
+./build_ffmpeg.sh "${FFMPEG_EXT_PATH}" "${ANDROID_NDK_PATH}" "linux-x86_64" "${ENABLED_DECODERS[@]}"

@@ -1,3 +1,5 @@
+import com.android.build.gradle.LibraryExtension
+
 plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
@@ -19,6 +21,12 @@ allprojects {
     repositories {
         mavenCentral()
         google()
+    }
+
+    // Force specific NDK version
+    afterEvaluate {
+        val android = extensions.findByType(LibraryExtension::class.java)
+        android?.ndkVersion = "21.4.7075529"
     }
 }
 
