@@ -35,10 +35,6 @@ jobs:
         run: sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;${NDK_VER}"
       - name: Build ffmpeg
         run: ./build.sh
-      - name: Force specific version of cmake to build extension
-        run: |
-          cmake=(${ANDROID_SDK_ROOT}/cmake/3.10.2*)
-          echo cmake.dir="${cmake[0]}" | tee -a local.properties
       - name: Set JELLYFIN_VERSION
         if: ${{ startsWith(github.ref, 'refs/tags/v') }}
         run: echo "JELLYFIN_VERSION=$(echo ${GITHUB_REF#refs/tags/v} | tr / -)" >> $GITHUB_ENV
