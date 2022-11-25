@@ -10,10 +10,12 @@ val android = exoplayerProject.extensions.findByType(LibraryExtension::class.jav
     ?: error("Could not find android extension")
 
 val generateJavadoc by exoplayerProject.tasks.getting(Javadoc::class)
+generateJavadoc.isFailOnError = false
+
 val javadocJar by tasks.creating(Jar::class) {
     archiveClassifier.set("javadoc")
-    dependsOn(generateJavadoc)
     from(generateJavadoc)
+    dependsOn(generateJavadoc)
 }
 
 // Package sources from ExoPlayer FFmpeg extension project
