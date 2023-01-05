@@ -18,7 +18,7 @@ jobs:
     if: ${{ contains(github.repository_owner, 'jellyfin') || startsWith(github.ref, 'refs/tags/v') }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b # v3.2.0
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c # v3.3.0
         with:
           submodules: recursive
       - name: Setup Java
@@ -29,7 +29,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@3fbe033aaae657f011f88f29be9e65ed26bd29ef # v2.3.3
       - name: Cache NDK
-        uses: actions/cache@c1a5de879eb890d062a85ee0252d6036480b1fe2 # v3.2.1
+        uses: actions/cache@4723a57e26efda3a62cbde1812113b730952852d # v3.2.2
         with:
           path: /usr/local/lib/android/sdk/ndk/${{ env.NDK_VER }}
           key: ${{ runner.os }}-${{ env.NDK_VER }}
