@@ -9,6 +9,8 @@ val exoplayerProject = project(":exoplayer-extension-ffmpeg")
 val android = exoplayerProject.extensions.findByType(LibraryExtension::class.java)
     ?: error("Could not find android extension")
 
+android.namespace = "com.google.android.exoplayer2.ext.ffmpeg"
+
 val generateJavadoc by exoplayerProject.tasks.getting(Javadoc::class)
 generateJavadoc.isFailOnError = false
 
