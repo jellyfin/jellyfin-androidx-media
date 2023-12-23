@@ -1,19 +1,39 @@
 import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.api.LibraryVariant
+import com.android.build.gradle.tasks.BundleAar
 
 plugins {
     `maven-publish`
     signing
 }
 
-val exoplayerProject = project(":exoplayer-extension-ffmpeg")
-val android = exoplayerProject.extensions.findByType(LibraryExtension::class.java)
+val decoderProject = project(":androidx-media-lib-decoder-ffmpeg")
+val androidExtension = decoderProject.extensions.findByType(LibraryExtension::class.java)
     ?: error("Could not find android extension")
 
-val generateJavadoc by exoplayerProject.tasks.getting(Javadoc::class)
-generateJavadoc.isFailOnError = false
+@Suppress("deprecation") // libraryVariants exposes deprecated type
+val releaseVariant: LibraryVariant = androidExtension.libraryVariants.first { variant ->
+    variant.name == "release"
+}
 
-val javadocJar by tasks.creating(Jar::class) {
+val bundleReleaseAar by decoderProject.tasks.getting(BundleAar::class)
+
+val generateJavadoc by tasks.registering(Javadoc::class) {
+    group = "publishing"
+    description = "Generates Javadoc for release sources."
+
+    val javaCompile = releaseVariant.javaCompileProvider.get()
+    source = javaCompile.source
+    classpath = javaCompile.classpath + files(androidExtension.bootClasspath)
+
+    setDestinationDir(File(buildDir, "/docs/javadoc"))
+
+    isFailOnError = false
+}
+
+val javadocJar by tasks.registering(Jar::class) {
     archiveClassifier.set("javadoc")
+
     from(generateJavadoc)
     dependsOn(generateJavadoc)
 }
@@ -21,7 +41,8 @@ val javadocJar by tasks.creating(Jar::class) {
 // Package sources from ExoPlayer FFmpeg extension project
 val sourcesJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
-    val main = android.sourceSets.getByName("main")
+
+    val main = androidExtension.sourceSets.getByName("main")
     from(main.java.srcDirs)
     @Suppress("deprecation")
     from(main.jni.srcDirs) {
@@ -33,15 +54,15 @@ afterEvaluate {
     // Specify release artifacts and apply POM
     publishing.publications.create<MavenPublication>("default") {
         // Repackage release artifacts of extension
-        from(exoplayerProject.components["release"])
+        artifact(bundleReleaseAar)
 
         // Add JavaDocs and sources
         artifact(javadocJar)
         artifact(sourcesJar)
 
         pom {
-            name.set("Jellyfin ExoPlayer libraries - $artifactId")
-            description.set("ExoPlayer FFmpeg extension used in the Jellyfin project")
+            name.set("Jellyfin AndroidX Media3 libraries - $artifactId")
+            description.set("AndroidX Media3 FFmpeg decoder used in the Jellyfin project")
             url.set("https://github.com/jellyfin/jellyfin-exoplayer-ffmpeg-extension")
 
             scm {
