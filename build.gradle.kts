@@ -15,7 +15,7 @@ buildscript {
 }
 
 allprojects {
-    group = "org.jellyfin.exoplayer"
+    group = "org.jellyfin.media3"
     version = createVersion()
 
     repositories {
