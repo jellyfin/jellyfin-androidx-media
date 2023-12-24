@@ -1,4 +1,4 @@
-name: ExoPlayer FFmpeg Extension / Build
+name: AndroidX Media3 FFmpeg Decoder / Build
 
 on:
   push:
