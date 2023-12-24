@@ -1,4 +1,4 @@
-name: ExoPlayer FFmpeg Extension / Publish
+name: AndroidX Media3 FFmpeg Decoder / Publish
 
 on:
   push:

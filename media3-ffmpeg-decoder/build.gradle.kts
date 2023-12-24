@@ -38,7 +38,7 @@ val javadocJar by tasks.registering(Jar::class) {
     dependsOn(generateJavadoc)
 }
 
-// Package sources from ExoPlayer FFmpeg extension project
+// Package sources from decoder project
 val sourcesJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
 
@@ -63,12 +63,12 @@ afterEvaluate {
         pom {
             name.set("Jellyfin AndroidX Media3 libraries - $artifactId")
             description.set("AndroidX Media3 FFmpeg decoder used in the Jellyfin project")
-            url.set("https://github.com/jellyfin/jellyfin-exoplayer-ffmpeg-extension")
+            url.set("https://github.com/jellyfin/jellyfin-androidx-media")
 
             scm {
-                connection.set("scm:git:git://github.com/jellyfin/jellyfin-exoplayer-ffmpeg-extension.git")
-                developerConnection.set("scm:git:ssh://github.com:jellyfin/jellyfin-exoplayer-ffmpeg-extension.git")
-                url.set("https://github.com/jellyfin/jellyfin-exoplayer-ffmpeg-extension/tree/master")
+                connection.set("scm:git:git://github.com/jellyfin/jellyfin-androidx-media.git")
+                developerConnection.set("scm:git:ssh://github.com:jellyfin/jellyfin-androidx-media.git")
+                url.set("https://github.com/jellyfin/jellyfin-androidx-media/tree/master")
             }
 
             licenses {
