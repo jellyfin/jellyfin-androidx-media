@@ -5,4 +5,4 @@
 [submodule "ffmpeg"]
 	path = ffmpeg
 	url = https://git.ffmpeg.org/ffmpeg.git
-	branch = release/4.2
+	branch = release/6.0
