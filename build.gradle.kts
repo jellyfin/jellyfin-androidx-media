@@ -23,10 +23,13 @@ allprojects {
         google()
     }
 
-    // Force specific NDK version
+    // Set minSdk to 21 and force a specific NDK version
     afterEvaluate {
         val android = extensions.findByType(LibraryExtension::class.java)
-        android?.ndkVersion = "21.4.7075529"
+        if (android != null) {
+            android.defaultConfig.minSdk = 21
+            android.ndkVersion = "26.1.10909125"
+        }
     }
 }
 

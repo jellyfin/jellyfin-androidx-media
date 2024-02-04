@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure NDK is available
-export ANDROID_NDK_PATH=$ANDROID_HOME/ndk/21.4.7075529
+export ANDROID_NDK_PATH=$ANDROID_HOME/ndk/26.1.10909125
 
 [[ -z "$ANDROID_NDK_PATH" ]] && echo "No NDK found, quitting…" && exit 1
 
@@ -16,4 +16,4 @@ ln -sf "${FFMPEG_PATH}" "${FFMPEG_MOD_PATH}/jni/ffmpeg"
 
 # Start build
 cd "${FFMPEG_MOD_PATH}/jni"
-./build_ffmpeg.sh "${FFMPEG_MOD_PATH}" "${ANDROID_NDK_PATH}" "linux-x86_64" 16 "${ENABLED_DECODERS[@]}"
+./build_ffmpeg.sh "${FFMPEG_MOD_PATH}" "${ANDROID_NDK_PATH}" "linux-x86_64" 21 "${ENABLED_DECODERS[@]}"
