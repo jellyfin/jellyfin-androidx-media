@@ -3,7 +3,7 @@
 # Ensure NDK is available
 export ANDROID_NDK_PATH=$ANDROID_HOME/ndk/26.1.10909125
 
-[[ -z "$ANDROID_NDK_PATH" ]] && echo "No NDK found, quitting…" && exit 1
+[[ ! -d "$ANDROID_NDK_PATH" ]] && echo "No NDK found, quitting…" && exit 1
 
 # Setup environment
 export ANDROIDX_MEDIA_ROOT="${PWD}/media"
