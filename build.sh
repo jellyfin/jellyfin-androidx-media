@@ -16,4 +16,4 @@ ln -sf "${FFMPEG_PATH}" "${FFMPEG_MOD_PATH}/jni/ffmpeg"
 
 # Start build
 cd "${FFMPEG_MOD_PATH}/jni"
-./build_ffmpeg.sh "${FFMPEG_MOD_PATH}" "${ANDROID_NDK_PATH}" "linux-x86_64" "${ENABLED_DECODERS[@]}"
+./build_ffmpeg.sh "${FFMPEG_MOD_PATH}" "${ANDROID_NDK_PATH}" "linux-x86_64" 16 "${ENABLED_DECODERS[@]}"
