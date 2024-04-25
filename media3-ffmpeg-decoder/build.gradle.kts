@@ -65,8 +65,6 @@ afterEvaluate {
         artifact(javadocJar)
         artifact(sourcesJar)
 
-        println("Version: $decoderReleaseVersion")
-
         pom {
             name.set("Jellyfin AndroidX Media3 libraries - $artifactId")
             description.set("AndroidX Media3 FFmpeg decoder used in the Jellyfin project")
