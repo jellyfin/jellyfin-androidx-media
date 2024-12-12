@@ -31,7 +31,7 @@ jobs:
         with:
           path: /usr/local/lib/android/sdk/ndk/${{ env.NDK_VER }}
           key: ${{ runner.os }}-${{ env.NDK_VER }}
-      - name: Install correct NDK
+      - name: Install correct NDK and CMake
         run: sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${NDK_VER}" "cmake;${CMAKE_VER}"
       - name: Build ffmpeg
         run: ./build.sh
