@@ -8,6 +8,7 @@ on:
 
 env:
   NDK_VER: 26.1.10909125
+  CMAKE_VER: 3.31.1
 
 jobs:
   build:
@@ -31,7 +32,7 @@ jobs:
           path: /usr/local/lib/android/sdk/ndk/${{ env.NDK_VER }}
           key: ${{ runner.os }}-${{ env.NDK_VER }}
       - name: Install correct NDK
-        run: sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${NDK_VER}"
+        run: sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;${NDK_VER}" "cmake;${CMAKE_VER}"
       - name: Build ffmpeg
         run: ./build.sh
       - name: Build extension and publish library locally
