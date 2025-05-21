@@ -1,5 +1,3 @@
-gradle.extra["androidxMediaModulePrefix"] = "androidx-media-"
-val mediaRoot = file("media")
-apply(from = File(mediaRoot, "core_settings.gradle"))
+apply(from = File("library_settings.gradle.kts"))
 
 include(":media3-ffmpeg-decoder")
