@@ -12,7 +12,7 @@ fun Project.getProperty(name: String): String? {
     return value
 }
 
-const val SNAPSHOT_VERSION = "SNAPSHOT"
+const val SNAPSHOT_VERSION = "latest-SNAPSHOT"
 
 /**
  * Helper function to create the library version using the `jellyfin.version` property.
