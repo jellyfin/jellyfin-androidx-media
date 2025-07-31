@@ -16,6 +16,9 @@ project(modulePrefix + "lib-container").projectDir = File(mediaRootDir, "librari
 include(modulePrefix + "lib-exoplayer")
 project(modulePrefix + "lib-exoplayer").projectDir = File(mediaRootDir, "libraries/exoplayer")
 
+include(modulePrefix + "lib-exoplayer-dash")
+project(modulePrefix + "lib-exoplayer-dash").projectDir = File(mediaRootDir, "libraries/exoplayer_dash")
+
 include(modulePrefix + "lib-database")
 project(modulePrefix + "lib-database").projectDir = File(mediaRootDir, "libraries/database")
 
@@ -29,6 +32,15 @@ project(modulePrefix + "lib-decoder-ffmpeg").projectDir = File(mediaRootDir, "li
 
 include(modulePrefix + "lib-extractor")
 project(modulePrefix + "lib-extractor").projectDir = File(mediaRootDir, "libraries/extractor")
+
+include(modulePrefix + "lib-effect")
+project(modulePrefix + "lib-effect").projectDir = File(mediaRootDir, "libraries/effect")
+
+include(modulePrefix + "lib-muxer")
+project(modulePrefix + "lib-muxer").projectDir = File(mediaRootDir, "libraries/muxer")
+
+include(modulePrefix + "lib-transformer")
+project(modulePrefix + "lib-transformer").projectDir = File(mediaRootDir, "libraries/transformer")
 
 include(modulePrefix + "test-utils-robolectric")
 project(modulePrefix + "test-utils-robolectric").projectDir = File(mediaRootDir, "libraries/test_utils_robolectric")
