@@ -6,8 +6,8 @@ import java.util.Locale
  */
 fun Project.getProperty(name: String): String? {
     // sample.var --> SAMPLE_VAR
-    val environmentName = name.toUpperCase(Locale.ROOT).replace(".", "_")
-    val value = findProperty(name)?.toString() ?: System.getenv(environmentName) ?: null
+    val environmentName = name.uppercase(Locale.ROOT).replace(".", "_")
+    val value = findProperty(name)?.toString() ?: System.getenv(environmentName)
     logger.debug("getProperty($name): $environmentName - found=${!value.isNullOrBlank()}")
     return value
 }
