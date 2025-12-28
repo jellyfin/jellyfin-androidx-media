@@ -36,6 +36,9 @@ project(modulePrefix + "lib-extractor").projectDir = File(mediaRootDir, "librari
 include(modulePrefix + "lib-effect")
 project(modulePrefix + "lib-effect").projectDir = File(mediaRootDir, "libraries/effect")
 
+include(modulePrefix + "lib-inspector")
+project(modulePrefix + "lib-inspector").projectDir = File(mediaRootDir, "libraries/inspector")
+
 include(modulePrefix + "lib-muxer")
 project(modulePrefix + "lib-muxer").projectDir = File(mediaRootDir, "libraries/muxer")
 
